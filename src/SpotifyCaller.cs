@@ -1,16 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
-
 namespace SpotifyNotifierConsole
 {
-    class SpotifyCaller
+    public class SpotifyCaller
     {
         private string _token;
         private HttpClient _httpClient;
@@ -41,7 +36,6 @@ namespace SpotifyNotifierConsole
             var response = _httpClient.SendAsync(getMessage).Result;
 
             Console.WriteLine(await response.Content.ReadAsStringAsync());
-
         }
     } 
 }

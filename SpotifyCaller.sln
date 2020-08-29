@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyCaller", "SpotifyCaller.csproj", "{A4D445E8-60A4-4B78-B426-233F6B34F791}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyCaller.Tests", "test\SpotifyCaller.Tests\SpotifyCaller.Tests.csproj", "{88E77ADF-D5F3-4539-BF78-35BAAEC3C332}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A4D445E8-60A4-4B78-B426-233F6B34F791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4D445E8-60A4-4B78-B426-233F6B34F791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4D445E8-60A4-4B78-B426-233F6B34F791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E77ADF-D5F3-4539-BF78-35BAAEC3C332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E77ADF-D5F3-4539-BF78-35BAAEC3C332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E77ADF-D5F3-4539-BF78-35BAAEC3C332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E77ADF-D5F3-4539-BF78-35BAAEC3C332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
