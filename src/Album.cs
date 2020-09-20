@@ -1,15 +1,9 @@
 ﻿using System;
-namespace SpotifyNotifierConsole
+namespace SpotifyCaller
 {
-    class Album
+    public class Album
     {
-        private String _name;
-        private String _id;
-
-        public Album(String name, String id)
-        {
-            _name = name;
-            _id = id;
-        }
+        public string Name { get; set; }
+        public string Id { get; set; }
     } 
 }

@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-namespace SpotifyNotifierConsole
+
+namespace SpotifyCaller
 {
     public class SpotifyCaller
     {
-        private string _token;
         private HttpClient _httpClient;
 
         public SpotifyCaller(string clientKey, string clientSecret)
@@ -26,16 +27,40 @@ namespace SpotifyNotifierConsole
             var responseContents = JObject.Parse(await response.Content.ReadAsStringAsync());
 
             var token = responseContents["access_token"];
+
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.ToString());
         }
 
-        public async void findAlbums(String artist)
+        private string FindArtistId(String artist)
         {
-            var getMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.spotify.com/v1/search?q={artist}&type=artist");
+            artist.Replace(' ', '+');
 
+            var getMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.spotify.com/v1/search?q={artist}&type=artist");
             var response = _httpClient.SendAsync(getMessage).Result;
 
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            var responseContents = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+
+            return responseContents["artists"]["items"][0]["id"].ToString();
+        }
+
+        public List<Album> FindAlbums(String artist)
+        {
+            var id = FindArtistId(artist);
+
+            var getMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.spotify.com/v1/artists/{id}/albums?include_groups=album");
+            var response = _httpClient.SendAsync(getMessage).Result;
+
+            var responseContents = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+
+            var albumJEnumerable = responseContents["items"].AsJEnumerable();
+
+            List<Album> albums = new List<Album>();
+            foreach (JToken album in albumJEnumerable)
+            {
+                albums.Add(album.ToObject<Album>());
+            }
+
+            return albums;
         }
     } 
 }
