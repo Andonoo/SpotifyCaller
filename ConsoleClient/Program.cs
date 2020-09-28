@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace ConsoleClient
 {
+    // Simple console app for debugging purposes
     class Program
     {
         static void Main(string[] args)

@@ -14,7 +14,7 @@ namespace SpotifyCaller
             _albums = new List<Album>();
         }
 
-        public void addAlbums(Collection<Album> albums)
+        public void AddAlbums(Collection<Album> albums)
         {
             _albums.AddRange(albums);
         }

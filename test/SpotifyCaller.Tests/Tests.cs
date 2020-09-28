@@ -5,6 +5,7 @@ using SpotifyCaller;
 
 namespace SpotifyCallerTests
 {
+    [TestFixture]
     public class Tests
     {
         private SpotifyCaller.SpotifyCaller _caller;
@@ -13,6 +14,7 @@ namespace SpotifyCallerTests
         public void Setup()
         {
             IEnumerator<string> apiIdSecret = System.IO.File.ReadLines(@"C:\Users\Andrew\source\repos\SpotifyCaller\testKeys.txt").GetEnumerator();
+            apiIdSecret.MoveNext();
             string clientId = apiIdSecret.Current;
             apiIdSecret.MoveNext();
             string clientSecret = apiIdSecret.Current;
@@ -21,10 +23,12 @@ namespace SpotifyCallerTests
         }
 
         [Test]
-        public void Test1()
+        public void TestGetAlbums()
         {
-            List<Album> result = _caller.FindAlbums("Pink Floyd");
-            Assert.IsNotEmpty(result);
+            List<Album> albums = _caller.FindAlbums("Pink Floyd");
+            List<string> albumNames = albums.ConvertAll((Album a) => { return a.Name; });
+
+            Assert.Contains("Animals", albumNames);
         }
     }
 }

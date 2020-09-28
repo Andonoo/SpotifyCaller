@@ -31,7 +31,7 @@ namespace SpotifyCaller
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.ToString());
         }
 
-        private string FindArtistId(String artist)
+        public string FindArtistId(String artist)
         {
             artist.Replace(' ', '+');
 
